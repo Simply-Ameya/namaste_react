@@ -18,6 +18,8 @@ Using cmd + /
 
 Virtual DOM is a copy of the actual DOM. React works on virtual DOM. Meaning instead of changing the actual DOM everytime any changes are done, Virtual DOM creates a copy of actual DOM. Whenever any changes are done in the code, the new Virtual DOM is compared with the actual DOM and only the changed part in the virtual DOM is rerendered. Since only the changes are rendered, the build is faster.
 
+The representation of HTML elements in an object format is the virtual DOM, when the state of component is changed, the differ algorith in React checks the old DOM with updated DOM and reacts to the changes that are done in the updated DOM.
+
 - What is Reconciliation in React?
 
 Reconciliation in React refers to the process of updating the UI to reflect changes in the underlying data. When the state or props of a component change, React needs to determine what changes need to be made to the component tree in order to efficiently update the UI.
