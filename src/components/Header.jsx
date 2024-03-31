@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { LOGOURL } from "../utils/constants";
 
 export const Header = () => {
+  const [isLogin, setIsLogin] = useState();
   return (
     <div className="header">
       <div className="logo-container">
@@ -13,6 +14,9 @@ export const Header = () => {
           <li>About us</li>
           <li>Contact us</li>
           <li>Cart</li>
+          <button className="login" onClick={() => setIsLogin(!isLogin)}>
+            {isLogin ? "Log Out" : "Log In"}
+          </button>
         </ul>
       </div>
     </div>
