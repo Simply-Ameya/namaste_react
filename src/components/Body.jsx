@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { RestaurantCard } from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { Shimmer } from "./Shimmer";
-// import { RESTAURANTDATA } from "../utils/constants";
+import { Link } from "react-router-dom";
+import { useOnlineStatus } from "../utils/useOnlineStatus";
 
 export const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      fetchData();
-    }, 50);
+  const onlineStatus = useOnlineStatus();
 
-    return () => clearTimeout(timeout);
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
+  useEffect(() => {
+    // const timeout = setTimeout(() => {
+    fetchData();
+    // }, 50);
+
+    // return () => clearTimeout(timeout);
   }, []);
 
   const fetchData = async () => {
@@ -40,35 +45,61 @@ export const Body = () => {
     );
   };
 
+  if (!onlineStatus) {
+    return (
+      <div>
+        <h1>Looks like you are offline</h1>
+        <p>Please check your internet connection</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div className="">
+      <div className="flex m-5">
+        <div className="">
           <input
             type="text"
-            className="search-box"
+            className="border-rose-300 border-2 mx-5"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className="search-btn" onClick={handleSearchClick}>
+          <button
+            className="text-white bg-green-300 w-20 h-15 rounded-lg mx-5 pb-1"
+            onClick={handleSearchClick}
+          >
             Search
           </button>
         </div>
-        <button className="filter-btn" onClick={handleFilter}>
+        <button
+          className="text-white bg-gray-300 w-auto h-15 rounded-lg mx-5 pb-1 px-2"
+          onClick={handleFilter}
+        >
           Top Rated Restaurants
         </button>
       </div>
       {listOfRestaurant ? (
-        <div className="res-container">
+        <div className="flex flex-wrap justify-around">
           {filteredRestaurants.map((each, index) => (
-            <RestaurantCard
-              key={index}
-              resName={each.resName}
-              cuisine={each.cuisine}
-              rating={each.rating}
-              deliveryTime={each.deliveryTime}
-              imageUrl={each.imageUrl}
-            />
+            <Link to={`/restaurant/${each.resName}`} key={index}>
+              {each.promoted ? (
+                <RestaurantCardPromoted
+                  resName={each.resName}
+                  cuisine={each.cuisine}
+                  rating={each.rating}
+                  deliveryTime={each.deliveryTime}
+                  imageUrl={each.imageUrl}
+                />
+              ) : (
+                <RestaurantCard
+                  resName={each.resName}
+                  cuisine={each.cuisine}
+                  rating={each.rating}
+                  deliveryTime={each.deliveryTime}
+                  imageUrl={each.imageUrl}
+                />
+              )}
+            </Link>
           ))}
         </div>
       ) : (

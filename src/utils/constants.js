@@ -6,6 +6,7 @@ export let RESTAURANTDATA = [
     deliveryTime: "38 mins",
     imageUrl:
       "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg",
+    promoted: true,
   },
   {
     resName: "Taj Mahal Restaurant",
@@ -69,6 +70,7 @@ export let RESTAURANTDATA = [
     deliveryTime: "30 mins",
     imageUrl:
       "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg",
+    promoted: true,
   },
   {
     resName: "Kung Pao Chicken House",
@@ -77,6 +79,55 @@ export let RESTAURANTDATA = [
     deliveryTime: "38 mins",
     imageUrl:
       "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg",
+  },
+];
+
+export const restaurantMenuData = [
+  {
+    restaurantName: "Meghna Foods",
+    menu: [
+      {
+        itemName: "Chicken Biryani",
+        category: "Main Course",
+        price: "$10",
+        imageUrl: "https://example.com/chicken_biryani.jpg",
+      },
+      {
+        itemName: "Butter Chicken",
+        category: "Main Course",
+        price: "$12",
+        imageUrl: "https://example.com/butter_chicken.jpg",
+      },
+      {
+        itemName: "Vegetable Pulao",
+        category: "Main Course",
+        price: "$8",
+        imageUrl: "https://example.com/vegetable_pulao.jpg",
+      },
+    ],
+  },
+  {
+    restaurantName: "Taj Mahal Restaurant",
+    menu: [
+      {
+        itemName: "Chicken Tikka Masala",
+        category: "Main Course",
+        price: "$14",
+        imageUrl: "https://example.com/chicken_tikka_masala.jpg",
+      },
+      {
+        itemName: "Palak Paneer",
+        category: "Main Course",
+        price: "$11",
+        imageUrl: "https://example.com/palak_paneer.jpg",
+      },
+      {
+        itemName: "Naan Bread",
+        category: "Bread",
+        price: "$3",
+        imageUrl: "https://example.com/naan_bread.jpg",
+      },
+    ],
   },
 ];
 
